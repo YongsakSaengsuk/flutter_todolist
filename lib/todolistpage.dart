@@ -12,6 +12,9 @@ class _TodolistpageState extends State<Todolistpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+      ),
       appBar: AppBar(
         centerTitle: true,
         title: Text(
@@ -20,28 +23,27 @@ class _TodolistpageState extends State<Todolistpage> {
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-        child: Center(
-          child: Container(
-              width: 370,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Color(0xFFA6CDC6),
-              ),
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: todos.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    color: Color(0xFFFBF5DD),
-                    child: ListTile(
-                      title: Text(todos[index].title),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
-                  );
-                },
-              )),
-        ),
+        child: Container(
+            width: 370,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Color(0xFFA6CDC6),
+            ),
+            child: ListView.builder(
+              padding: const EdgeInsets.all(20),
+              itemCount: todos.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: const EdgeInsets.all(8),
+                  color: Color(0xFFFBF5DD),
+                  child: ListTile(
+                    title: Text(todos[index].title),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                  ),
+                );
+              },
+            )),
       ),
     );
   }
