@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/todolistpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,8 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(backgroundColor: Color(0xFFDDA853)),
+        scaffoldBackgroundColor: Color(0xFF16404D),
+        
+      ),
+      home: Todolistpage(),
     );
   }
 }
-
