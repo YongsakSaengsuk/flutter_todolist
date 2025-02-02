@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/addtodo.dart';
 import 'package:flutter_todolist/data/data.dart';
 
 class Todolistpage extends StatefulWidget {
@@ -11,9 +14,16 @@ class Todolistpage extends StatefulWidget {
 class _TodolistpageState extends State<Todolistpage> {
   @override
   Widget build(BuildContext context) {
+    log('message');
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        child: const Icon(Icons.add),
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => Addtodo(),
+          );
+        },
       ),
       appBar: AppBar(
         centerTitle: true,
@@ -22,7 +32,8 @@ class _TodolistpageState extends State<Todolistpage> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 100),
         child: Container(
             width: 370,
             decoration: BoxDecoration(

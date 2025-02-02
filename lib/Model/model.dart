@@ -1,6 +1,6 @@
 class Model {
-  String title;
-  bool isDone;
+  final String title;
+  final bool isDone;
 
   Model({required this.title , required this.isDone });
 }
