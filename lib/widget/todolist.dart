@@ -11,7 +11,11 @@ class Todolist extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       itemCount: tasks.length,
       itemBuilder: (context, index) {
-        return TodoItem(getTask: tasks[index],);
+        return Dismissible(
+            key: ValueKey(tasks[index].id),
+            child: TodoItem(
+              getTask: tasks[index],
+            ));
       },
     );
   }
