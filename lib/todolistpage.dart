@@ -1,8 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_todolist/Model/model.dart';
 import 'package:flutter_todolist/addtodo.dart';
-import 'package:flutter_todolist/data/data.dart';
+import 'package:flutter_todolist/todolist.dart';
 
 class Todolistpage extends StatefulWidget {
   const Todolistpage({super.key});
@@ -12,18 +13,33 @@ class Todolistpage extends StatefulWidget {
 }
 
 class _TodolistpageState extends State<Todolistpage> {
+  final List<Model> _registeredTask = [
+    Model(title: "Buy Milk", isDone: false),
+    Model(title: "Cleaning", isDone: false),
+    Model(title: "Study", isDone: false),
+    Model(title: "Workout", isDone: false),
+  ];
+
+  void _showAddTaskOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Addtodo(addtask: addTask),
+    );
+  }
+
+  void addTask(Model task) {
+    setState(() {
+      _registeredTask.add(task);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     log('message');
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        onPressed: _showAddTaskOverlay,
         child: const Icon(Icons.add),
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) => Addtodo(),
-          );
-        },
       ),
       appBar: AppBar(
         centerTitle: true,
@@ -40,21 +56,7 @@ class _TodolistpageState extends State<Todolistpage> {
               borderRadius: BorderRadius.circular(30),
               color: Color(0xFFA6CDC6),
             ),
-            child: ListView.builder(
-              padding: const EdgeInsets.all(20),
-              itemCount: todos.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  margin: const EdgeInsets.all(8),
-                  color: Color(0xFFFBF5DD),
-                  child: ListTile(
-                    title: Text(todos[index].title),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                  ),
-                );
-              },
-            )),
+            child: Todolist(tasks: _registeredTask)),
       ),
     );
   }
