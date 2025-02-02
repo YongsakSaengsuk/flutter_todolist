@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_todolist/Model/model.dart';
 import 'package:flutter_todolist/addtodo.dart';
-import 'package:flutter_todolist/todolist.dart';
+import 'package:flutter_todolist/widget/todolist.dart';
 
 class Todolistpage extends StatefulWidget {
   const Todolistpage({super.key});
