@@ -33,6 +33,26 @@ class _TodolistpageState extends State<Todolistpage> {
     });
   }
 
+  void removeTask(Model task) {
+    final taskIndex = _registeredTask.indexOf(task);
+    setState(() {
+      _registeredTask.remove(task);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: Duration(seconds: 3),
+      content: const Text('Expense deleted.'),
+      action: SnackBarAction(
+        label: 'Undo',
+        onPressed: () {
+          setState(() {
+            _registeredTask.insert(taskIndex, task);
+          });
+        },
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     log('message');
@@ -56,7 +76,7 @@ class _TodolistpageState extends State<Todolistpage> {
               borderRadius: BorderRadius.circular(30),
               color: Color(0xFFA6CDC6),
             ),
-            child: Todolist(tasks: _registeredTask)),
+            child: Todolist(tasks: _registeredTask,onRemoveTask: removeTask,)),
       ),
     );
   }
