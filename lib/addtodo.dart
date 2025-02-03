@@ -58,8 +58,8 @@ class _AddtodoState extends State<Addtodo> {
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                 child: Neumorphic(
                   style: NeumorphicStyle(
-                    depth: 5,
-                    surfaceIntensity: 0.1,
+                    depth: 3,
+                    intensity: 0.6,
                     boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -74,7 +74,7 @@ class _AddtodoState extends State<Addtodo> {
                 style: NeumorphicStyle(
                   color: Color(0xFFDDA853),
                   depth: 5,
-                  surfaceIntensity: 0.1,
+                  intensity: 0.8,
                   boxShape:
                       NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
                 ),
