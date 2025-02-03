@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_todolist/Model/model.dart';
 
 class Addtodo extends StatefulWidget {
@@ -55,19 +56,13 @@ class _AddtodoState extends State<Addtodo> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 4,
-                        offset: Offset(4, 4),
-                      )
-                    ],
+                child: Neumorphic(
+                  style: NeumorphicStyle(
+                    depth: 5,
+                    surfaceIntensity: 0.1,
+                    boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
                   ),
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: TextField(
                     controller: taskController,
                     decoration: InputDecoration(
@@ -75,29 +70,16 @@ class _AddtodoState extends State<Addtodo> {
                   ),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
+              NeumorphicButton(
+                style: NeumorphicStyle(
                   color: Color(0xFFDDA853),
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26, 
-                      blurRadius: 4, 
-                      offset: Offset(4, 4), 
-                    ),
-                  ],
+                  depth: 5,
+                  surfaceIntensity: 0.1,
+                  boxShape:
+                      NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
                 ),
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      foregroundColor: Colors.black),
-                  onPressed: _summitTaskData,
-                  child: Text("Save Task"),
-                ),
+                onPressed: _summitTaskData,
+                child: Text("Save Task"),
               )
             ],
           ),

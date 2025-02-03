@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_todolist/Model/model.dart';
 
 class TodoItem extends StatelessWidget {
@@ -6,14 +7,22 @@ class TodoItem extends StatelessWidget {
   final Model getTask;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      key: ValueKey(getTask.id),
-      margin: const EdgeInsets.all(8),
-      color: Color(0xFFFBF5DD),
-      child: ListTile(
-        title: Text(getTask.title),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    return Container(
+      
+      margin: EdgeInsets.all(6),
+      padding: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.grey.shade300,
+        boxShadow: const [
+          BoxShadow(
+              color: Colors.grey,
+              offset: Offset(5, 6),
+              blurRadius: 15,
+              spreadRadius: 2)
+        ],
       ),
+      child: Text(getTask.title),
     );
   }
 }
