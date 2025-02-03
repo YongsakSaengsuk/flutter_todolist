@@ -15,6 +15,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(backgroundColor: Color(0xFFDDA853)),
         scaffoldBackgroundColor: Color(0xFF16404D),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Color(0xFFDDA853),
+          foregroundColor: Color(0xFF16404D),
+        ),
         
       ),
       home: Todolistpage(),

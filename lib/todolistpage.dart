@@ -76,7 +76,10 @@ class _TodolistpageState extends State<Todolistpage> {
               borderRadius: BorderRadius.circular(30),
               color: Color(0xFFA6CDC6),
             ),
-            child: Todolist(tasks: _registeredTask,onRemoveTask: removeTask,)),
+            child: Todolist(
+              tasks: _registeredTask,
+              onRemoveTask: removeTask,
+            )),
       ),
     );
   }
