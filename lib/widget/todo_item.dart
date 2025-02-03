@@ -1,9 +1,9 @@
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
-import 'package:flutter_todolist/Model/model.dart';
+
 
 class TodoItem extends StatelessWidget {
   const TodoItem({super.key, required this.getTask});
-  final Model getTask;
+  final String getTask;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -19,7 +19,7 @@ class TodoItem extends StatelessWidget {
         ),
         child: SizedBox(
           width: double.infinity,
-          child: Text(getTask.title)),
+          child: Text(getTask)),
       ),
     );
   }

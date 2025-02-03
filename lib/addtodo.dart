@@ -4,7 +4,7 @@ import 'package:flutter_todolist/Model/model.dart';
 
 class Addtodo extends StatefulWidget {
   const Addtodo({super.key, required this.addtask});
-  final void Function(Model task) addtask;
+  final void Function(String task) addtask;
   @override
   State<Addtodo> createState() => _AddtodoState();
 }
@@ -27,7 +27,7 @@ class _AddtodoState extends State<Addtodo> {
       );
       return;
     }
-    widget.addtask(Model(title: taskController.text, isDone: false));
+    widget.addtask(taskController.text);
     Navigator.pop(context);
   }
 

@@ -1,8 +1,10 @@
 import 'dart:developer';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
-import 'package:flutter_todolist/Model/model.dart';
+
+import 'package:flutter_todolist/Model/task_model.dart';
 import 'package:flutter_todolist/addtodo.dart';
 import 'package:flutter_todolist/widget/todolist.dart';
+import 'package:hive/hive.dart';
 
 class Todolistpage extends StatefulWidget {
   const Todolistpage({super.key});
@@ -12,12 +14,13 @@ class Todolistpage extends StatefulWidget {
 }
 
 class _TodolistpageState extends State<Todolistpage> {
-  final List<Model> _registeredTask = [
-    Model(title: "Buy Milk", isDone: false),
-    Model(title: "Cleaning", isDone: false),
-    Model(title: "Study", isDone: false),
-    Model(title: "Workout", isDone: false),
-  ];
+  late Box<Tasks> taskBox;
+
+  @override
+  void initState() {
+    super.initState();
+    taskBox = Hive.box<Tasks>('tasks');
+  }
 
   void _showAddTaskOverlay() {
     showModalBottomSheet(
@@ -26,36 +29,20 @@ class _TodolistpageState extends State<Todolistpage> {
     );
   }
 
-  void addTask(Model task) {
-    setState(() {
-      _registeredTask.add(task);
-    });
+  void addTask(String title) {
+    final newTask = Tasks(title: title);
+    taskBox.add(newTask);
+    setState(() {}); // Update UI after adding a task
   }
 
-  void removeTask(Model task) {
-    final taskIndex = _registeredTask.indexOf(task);
-    setState(() {
-      _registeredTask.remove(task);
-    });
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      duration: Duration(seconds: 3),
-      content: const Text('Expense deleted.'),
-      action: SnackBarAction(
-        label: 'Undo',
-        onPressed: () {
-          setState(() {
-            _registeredTask.insert(taskIndex, task);
-          });
-        },
-      ),
-    ));
-    Navigator.pop(context);
+  void removeTask(int index) {
+    taskBox.deleteAt(index);
+    setState(() {}); // Update UI after removing a task
   }
 
   @override
   Widget build(BuildContext context) {
-    log('message');
+    log('Building TodolistPage');
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: _showAddTaskOverlay,
@@ -63,9 +50,7 @@ class _TodolistpageState extends State<Todolistpage> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "ToDoList",
-        ),
+        title: Text("ToDoList"),
       ),
       body: Container(
         padding:
@@ -79,7 +64,7 @@ class _TodolistpageState extends State<Todolistpage> {
               boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
             ),
             child: Todolist(
-              tasks: _registeredTask,
+              taskBox: taskBox,
               onRemoveTask: removeTask,
             )),
       ),
