@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
-
 import 'package:flutter_todolist/Model/model.dart';
 
 class TodoItem extends StatelessWidget {
@@ -8,17 +6,21 @@ class TodoItem extends StatelessWidget {
   final Model getTask;
   @override
   Widget build(BuildContext context) {
-    return Neumorphic(
-      margin: EdgeInsets.all(6),
-      padding: EdgeInsets.all(20),
-      style: NeumorphicStyle(
-       color: Color(0xFFFBF5DD), 
-        depth: -3,
-        intensity: 2,
-        surfaceIntensity: 0.1,
-        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
+    return ClipRRect(
+      child: Neumorphic(
+        margin: EdgeInsets.fromLTRB(6, 6, 0, 6),
+        padding: EdgeInsets.all(20),
+        style: NeumorphicStyle(
+          color: Color(0xFFFBF5DD),
+          depth: -3,
+          intensity: 2,
+          surfaceIntensity: 0.1,
+          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
+        ),
+        child: SizedBox(
+          width: double.infinity,
+          child: Text(getTask.title)),
       ),
-      child: Text(getTask.title),
     );
   }
 }

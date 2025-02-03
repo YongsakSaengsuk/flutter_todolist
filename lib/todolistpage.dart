@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_todolist/Model/model.dart';
 import 'package:flutter_todolist/addtodo.dart';
@@ -52,6 +50,7 @@ class _TodolistpageState extends State<Todolistpage> {
         },
       ),
     ));
+    Navigator.pop(context);
   }
 
   @override
